@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_DIR = os.path.join(APP_DIR, "static")
+STATIC_DIR = APP_DIR
 HF_TOKEN = os.getenv("HF_TOKEN", "").strip()
 HF_API_BASE = os.getenv("HF_API_BASE", "https://router.huggingface.co/hf-inference/models").rstrip("/")
 IMAGE_MODEL = os.getenv("IMAGE_MODEL", "umm-maybe/AI-image-detector").strip()
@@ -24,7 +24,6 @@ ALLOWED = {
 }
 
 app = FastAPI(title="TruthLens AI", version="1.0.0")
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 @app.get("/")
 def home():
