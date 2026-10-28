@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: truthlens-ai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: HF_TOKEN
+        sync: false
+      - key: IMAGE_MODEL
+        value: umm-maybe/AI-image-detector
+      - key: AUDIO_MODEL
+        value: Vansh180/deepfake-audio-wav2vec2
+      - key: MAX_UPLOAD_MB
+        value: 40
+      - key: MAX_VIDEO_FRAMES
+        value: 8
